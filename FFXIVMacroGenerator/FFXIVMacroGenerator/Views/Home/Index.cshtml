@@ -2,7 +2,36 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h1 class="display-4">{{base}}</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">{{base2}}</a>.</p>
 </div>
+
+
+@section Scripts{
+
+    <script src="~/js/router.js"></script>
+    <script src="~/js/mixin.js"></script>
+
+    <script>
+        let vm = new Vue({
+            mixins: [mixin],
+            data() {
+                return {
+                    base: 'Welcome',
+                    base2: 'building Web apps with ASP.NET Core'
+                }
+            },
+            created() {
+
+            },
+            computed: {
+
+            },
+            methods: {
+
+            },
+            el: "#app"
+        })
+    </script>
+}
