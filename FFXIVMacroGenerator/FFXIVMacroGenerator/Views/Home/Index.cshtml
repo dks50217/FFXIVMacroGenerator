@@ -3,8 +3,9 @@
 }
 
 <div>
-    <h1 class="display-4">{{base}}</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">{{base2}}</a>.</p>
+    @*<h1 class="display-4">{{base}}</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">{{base2}}</a>.</p>*@
+    <draggable></draggable>
 </div>
 
 
@@ -21,6 +22,9 @@
                     base: 'Welcome',
                     base2: 'building Web apps with ASP.NET Core'
                 }
+            },
+            components: {
+                'draggable': httpVueLoader('../component/draggable.vue')
             },
             created() {
 
