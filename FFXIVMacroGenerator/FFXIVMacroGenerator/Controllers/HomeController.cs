@@ -1,5 +1,8 @@
-﻿using FFXIVMacroGenerator.Models;
+﻿using FFXIVMacroGenerator.Generator;
+using FFXIVMacroGenerator.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,14 +15,24 @@ namespace FFXIVMacroGenerator.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
         {
+            var rootPath = _hostEnvironment.WebRootPath;
+            ActionDataGenerator genAction = new ActionDataGenerator(rootPath);
+
+            genAction.InitData();
+
+
+
+
             return View();
         }
 

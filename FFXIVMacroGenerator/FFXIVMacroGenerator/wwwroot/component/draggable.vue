@@ -1,7 +1,7 @@
 ﻿<template>
     <div>
         <el-row :gutter="20">
-            <el-select v-model="selectJob" size="small">
+            <el-select v-model="selectJob" size="small" placeholder="請選擇職業">
                 <el-option v-for="item in jobOptions"
                            :key="item.value"
                            :label="item.label"
@@ -12,7 +12,7 @@
 
 
         <el-row :gutter="20">
-            <el-tag effect="dark">A列</el-tag>
+            <el-tag effect="dark">技能列</el-tag>
         </el-row>
 
         <el-row :gutter="20" class="skillArea">
@@ -26,12 +26,12 @@
         <el-divider></el-divider>
 
         <el-row :gutter="20">
-            <el-tag type="success" effect="dark">B列</el-tag>
+            <el-tag type="success" effect="dark">迴圈列</el-tag>
         </el-row>
 
         <el-row :gutter="20" class="settingArea">
             <draggable v-model="settingList" group="site" animation="300" dragClass="dragClass" ghostClass="ghostClass" chosenClass="chosenClass" @start="onStart" @end="onEnd">
-                <transition-group class="list-group">
+                <transition-group class="list-group" style="border: 5px black solid;">
                     <el-avatar v-for="(item,index) in settingList" shape="square" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" :key="index"></el-avatar>
                 </transition-group>
             </draggable>
@@ -140,6 +140,6 @@
 
     .list-group {
         min-height: 100px;
-        min-width: 100px;
+        min-width: 1000px;
     }
 </style>
