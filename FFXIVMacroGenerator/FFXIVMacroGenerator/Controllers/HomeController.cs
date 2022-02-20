@@ -27,11 +27,7 @@ namespace FFXIVMacroGenerator.Controllers
         {
             var rootPath = _hostEnvironment.WebRootPath;
             ActionDataGenerator genAction = new ActionDataGenerator(rootPath);
-
-            genAction.InitData();
-
-
-
+            genAction.CreateJsonData();
 
             return View();
         }

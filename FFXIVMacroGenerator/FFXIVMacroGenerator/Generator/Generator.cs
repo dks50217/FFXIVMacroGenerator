@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace FFXIVMacroGenerator.Generator
 {
-    public class Generator
+    public class GeneratorBase
     {
         public virtual bool CreateJsonData()
         {
-
+            return true;
         }
     }
 }

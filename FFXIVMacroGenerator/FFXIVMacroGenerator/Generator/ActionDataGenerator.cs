@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace FFXIVMacroGenerator.Generator
 {
-    public class ActionDataGenerator : Generator
+    public class ActionDataGenerator : GeneratorBase
     {
         private string _rootPath;
         
@@ -52,6 +53,7 @@ namespace FFXIVMacroGenerator.Generator
                 jobModel.ActionList = actionModelList;
                 JobModelList.Add(jobModel);
             }
+
 
             return true;
         }

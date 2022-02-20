@@ -1,11 +1,11 @@
 ﻿<template>
     <div>
         <el-row :gutter="20">
-            <el-select v-model="selectJob" size="small" placeholder="請選擇職業">
+            <el-select v-model="selectJob" size="small" placeholder="請選擇職業" @change="handleChange" value-key="ID">
                 <el-option v-for="item in jobOptions"
-                           :key="item.value"
-                           :label="item.label"
-                           :value="item.value">
+                           :key="item.ID"
+                           :label="item.Name"
+                           :value="item">
                 </el-option>
             </el-select>
         </el-row>
@@ -16,9 +16,9 @@
         </el-row>
 
         <el-row :gutter="20" class="skillArea">
-            <draggable class="list-group" v-model="skillList" group="site" animation="300" dragClass="dragClass" ghostClass="ghostClass" chosenClass="chosenClass" @start="onStart" @end="onEnd">
+            <draggable class="list-group" v-model="actionList" :group="{ name: 'site', pull: 'clone', put: false }" animation="300" dragClass="dragClass" ghostClass="ghostClass" chosenClass="chosenClass" @start="onStart" @end="onEnd">
                 <transition-group>
-                    <el-avatar v-for="(item,index) in skillList" shape="square" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" :key="index"></el-avatar>
+                    <el-avatar v-for="(item,index) in actionList" shape="square" v-bind:src="'../Image/FFXIVIcons Battle(PvE)/' + selectJob + '/' + item.ActionName" :key="index"></el-avatar>
                 </transition-group>
             </draggable>
         </el-row>
@@ -30,9 +30,9 @@
         </el-row>
 
         <el-row :gutter="20" class="settingArea">
-            <draggable v-model="settingList" group="site" animation="300" dragClass="dragClass" ghostClass="ghostClass" chosenClass="chosenClass" @start="onStart" @end="onEnd">
+            <draggable v-model="settingList" :group="{name: 'site', put: true, pull: true}" animation="300" dragClass="dragClass" ghostClass="ghostClass" chosenClass="chosenClass" @start="onStart" @end="onEnd" @change="setMacroText">
                 <transition-group class="list-group" style="border: 5px black solid;">
-                    <el-avatar v-for="(item,index) in settingList" shape="square" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" :key="index"></el-avatar>
+                    <el-avatar v-for="(item,index) in settingList" shape="square" v-bind:src="'../Image/FFXIVIcons Battle(PvE)/' + selectJob + '/' + item.ActionName" :key="index"></el-avatar>
                 </transition-group>
             </draggable>
         </el-row>
@@ -42,8 +42,8 @@
         <el-row :gutter="20">
             <el-input type="textarea"
                       placeholder=""
+                      :rows="10"
                       v-model="macroText"
-                      maxlength="30"
                       show-word-limit>
             </el-input>
         </el-row>
@@ -66,35 +66,10 @@
         data() {
             return {
                 drag: false,
-                jobOptions: [
-                    { label: 'JobA' , value: 1  },
-                    { label: 'JobB' , value: 2  },
-                    { label: 'JobC' , value: 3  }
-                ],
-                skillList: [
-                    { name: 'SkillA', image: '' },
-                    { name: 'SkillB', image: '' },
-                    { name: 'SkillC', image: '' },
-                    { name: 'SkillD', image: '' },
-                    { name: 'SkillA', image: '' },
-                    { name: 'SkillB', image: '' },
-                    { name: 'SkillC', image: '' },
-                    { name: 'SkillD', image: '' },
-                    { name: 'SkillA', image: '' },
-                    { name: 'SkillB', image: '' },
-                    { name: 'SkillC', image: '' },
-                    { name: 'SkillD', image: '' },
-                    { name: 'SkillA', image: '' },
-                    { name: 'SkillB', image: '' },
-                    { name: 'SkillC', image: '' },
-                    { name: 'SkillD', image: '' },
-                ],
-                settingList: [
-                    //{ id: 1, name: 'SkillE' },
-                    //{ id: 2, name: 'SkillF' },
-                    //{ id: 3, name: 'SkillG' },
-                    //{ id: 4, name: 'SkillH' }
-                ],
+                jobOptions: [],
+                actionList: [],
+                settingList: [],
+                dataList: null, 
                 macroText: '',
                 selectJob: ''
             };
@@ -103,25 +78,43 @@
             onStart(event) {
                 this.drag = true;
             },
-            onEnd() {
+            onEnd(event) {
                 this.drag = false;
             },
-            setMacroText() {
+            setMacroText(event) {
+                let _self = this;
+                let marcoStr = '';
 
+                _self.settingList.forEach(function (element) {
+                    let actionName = element.ActionName.replace('.png', '');
+                    marcoStr += "/ac " + actionName + "\n";
+                });
+
+                _self.macroText = marcoStr;
+            },
+            handleChange(item) {
+                this.settingList = [];
+                this.selectJob = item.ID + '_' + item.Name;
+                this.actionList = item.ActionList;
+                this.macroText = '';
             }
         },
         components: {
             'draggable': window['vuedraggable'],
             'raw-displayer': httpVueLoader('../component/raw-displayer.vue')
         },
+        mounted() {
+            let _self = this;
+            vm.getJSON('skill.json').load.then(res => _self.jobOptions = res.filter(r => r.Name));
+        }
     };
 </script>
 
 <style scoped>
     .el-avatar {
-        width: 80px;
-        height: 80px;
-        margin: 5px;
+        width: 50px;
+        height: 50px;
+        margin-left: 5px;
         cursor: grab;
     }
 
@@ -139,7 +132,7 @@
     }
 
     .list-group {
-        min-height: 100px;
+        min-height: 50px;
         min-width: 1000px;
     }
 </style>
