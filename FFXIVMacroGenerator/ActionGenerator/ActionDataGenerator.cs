@@ -1,17 +1,15 @@
-﻿using FFXIVMacroGenerator.Models;
+﻿using DataGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text;
 
-namespace FFXIVMacroGenerator.Generator
+namespace DataGenerator
 {
-    public class ActionDataGenerator : GeneratorBase
+    class ActionDataGenerator : GeneratorBase
     {
         private string _rootPath;
-        
+
         public ActionDataGenerator(string path)
         {
             _rootPath = path;
