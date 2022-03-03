@@ -1,5 +1,4 @@
-﻿using FFXIVMacroGenerator.Generator;
-using FFXIVMacroGenerator.Models;
+﻿using FFXIVMacroGenerator.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions;

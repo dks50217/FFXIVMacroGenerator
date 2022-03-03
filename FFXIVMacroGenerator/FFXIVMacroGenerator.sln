@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFXIVMacroGenerator", "FFXIVMacroGenerator\FFXIVMacroGenerator.csproj", "{58635B6B-C20C-451C-8DC0-7C7303C6896C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionGenerator", "ActionGenerator\ActionGenerator.csproj", "{B6BD9A51-AA1F-43EC-A092-445CB76390E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGenerator", "DataGenerator\DataGenerator.csproj", "{D382FF44-EC5B-436D-BD60-9C9AFCBD3998}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{58635B6B-C20C-451C-8DC0-7C7303C6896C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58635B6B-C20C-451C-8DC0-7C7303C6896C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58635B6B-C20C-451C-8DC0-7C7303C6896C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6BD9A51-AA1F-43EC-A092-445CB76390E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6BD9A51-AA1F-43EC-A092-445CB76390E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6BD9A51-AA1F-43EC-A092-445CB76390E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6BD9A51-AA1F-43EC-A092-445CB76390E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D382FF44-EC5B-436D-BD60-9C9AFCBD3998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D382FF44-EC5B-436D-BD60-9C9AFCBD3998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D382FF44-EC5B-436D-BD60-9C9AFCBD3998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D382FF44-EC5B-436D-BD60-9C9AFCBD3998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
