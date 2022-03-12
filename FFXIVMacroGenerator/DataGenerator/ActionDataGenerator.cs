@@ -6,14 +6,14 @@ using System.Text;
 
 namespace DataGenerator
 {
-    class ActionDataGenerator : GeneratorBase
+    public class ActionDataGenerator : GeneratorBase
     {
         private string _rootPath;
 
-        public ActionDataGenerator(string path)
-        {
-            _rootPath = path;
-        }
+        //public ActionDataGenerator(string path)
+        //{
+        //    _rootPath = path;
+        //}
 
         /// <summary>
         /// 建立Action Json資料結構
@@ -22,7 +22,7 @@ namespace DataGenerator
         public override bool CreateJsonData()
         {
             List<JobModel> JobModelList = new List<JobModel>();
-            var imagePath = $"{_rootPath}/Image/FFXIVIcons Battle(PvE)";
+            var imagePath = $"{_rootPath}{this.ImagePath}";
             string[] dirs = Directory.GetDirectories(imagePath, "*", SearchOption.AllDirectories);
 
             foreach (var path in dirs)
@@ -51,7 +51,6 @@ namespace DataGenerator
                 jobModel.ActionList = actionModelList;
                 JobModelList.Add(jobModel);
             }
-
 
             return true;
         }
